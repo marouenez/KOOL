@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "990362491160",
+    "firebase_url": "https://kool-732bf.firebaseio.com",
+    "project_id": "kool-732bf",
+    "storage_bucket": "kool-732bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990362491160:android:4753c1c80b5853ac",
+        "android_client_info": {
+          "package_name": "com.supcom.gr39.kool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990362491160-ei6b5spcjkglee0ujr3je88pbhq63070.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiVw57x7-tw0x_6BzCnsGFV6cTIzY2orI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
