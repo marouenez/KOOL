@@ -10,6 +10,8 @@ import android.util.Log;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
 public class Main2Activity extends AppCompatActivity {
 
 
@@ -25,6 +27,7 @@ public class Main2Activity extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -36,8 +39,17 @@ public class Main2Activity extends AppCompatActivity {
                     finish();*/
 
                     Log.i("email", user.getEmail());
+
+                    //Log.i("username", user.getDisplayName());
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    //i.putExtra("flag",1);
+                    ArrayList<String> info = new ArrayList<>();
+                    info.add(user.getEmail());
+                    if (user.getDisplayName()!=null)
+                    info.add(user.getDisplayName());
+                    if (user.getPhotoUrl()!=null)
+                    info.add(user.getPhotoUrl().toString());
+
+                    i.putExtra("info",info);
                     startActivity(i);
                     finish();
 

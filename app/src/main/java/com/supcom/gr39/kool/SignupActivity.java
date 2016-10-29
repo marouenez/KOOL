@@ -22,7 +22,7 @@ import butterknife.Bind;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
-
+    public String username;
     @Bind(R.id.input_name) EditText _nameText;
 
     @Bind(R.id.input_email) EditText _emailText;
@@ -77,8 +77,7 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String name = _nameText.getText().toString();
-
+        username = _nameText.getText().toString();
         String email = _emailText.getText().toString();
 
         String password = _passwordText.getText().toString();
@@ -98,7 +97,9 @@ public class SignupActivity extends AppCompatActivity {
 
                         } else {
                             onSignupSuccess();
-                            startActivity(new Intent(SignupActivity.this, MainActivity.class));
+                            Intent i =new Intent(SignupActivity.this, MainActivity.class);
+                            i.putExtra("aaa",username);
+                            startActivity(i);
                             finish();
                         }
                     }
@@ -109,6 +110,7 @@ public class SignupActivity extends AppCompatActivity {
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
+
     }
 
     public void onSignupFailed() {
