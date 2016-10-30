@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,16 +60,40 @@ public class HomeActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_home);
 
 
-        ViewPager mViewPager = (ViewPager) findViewById(R.id.viewPageAndroid);
+        final ViewPager mViewPager = (ViewPager) findViewById(R.id.viewPageAndroid);
         AndroidImageAdapter adapterView = new AndroidImageAdapter(this);
         mViewPager.setAdapter(adapterView);
         //ViewPagerAdapder adapder = new ViewPagerAdapder(getSupportFragmentManager(), listData);
-       // paper = (ViewPager) findViewById(R.id.viewpager);
+        // paper = (ViewPager) findViewById(R.id.viewpager);
 
         final RadioGroup radioGroup = (RadioGroup)findViewById(R.id.radiogroup);
+
+        RadioButton radioButton = (RadioButton) findViewById(R.id.radioButton) ;
+        RadioButton radioButton1 = (RadioButton) findViewById(R.id.radioButton2) ;
+        RadioButton radioButton2 = (RadioButton) findViewById(R.id.radioButton3) ;
+
+        radioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(0);
+            }
+        });
+        radioButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(1);
+            }
+        });
+        radioButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(2);
+            }
+        });
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
 
             }
 
@@ -199,7 +224,7 @@ public class HomeActivity extends AppCompatActivity implements
     }
     @Override
     public void onBackPressed() {
-            moveTaskToBack(true);
+        moveTaskToBack(true);
     }
 
 

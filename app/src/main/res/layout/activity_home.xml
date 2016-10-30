@@ -18,7 +18,8 @@
         android:id="@+id/button"
         android:onClick="loginClick"
         android:layout_above="@+id/createText"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:theme="@style/AppTheme"/>
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
@@ -33,12 +34,19 @@
 
     </com.google.android.gms.common.SignInButton>
 
+    <ImageView
+        app:srcCompat="@drawable/logo"
+        android:id="@+id/imageView3"
+        android:layout_centerHorizontal="true"
+        android:layout_width="120dp"
+        android:layout_height="120dp" />
+
     <RelativeLayout
         android:id="@+id/id_adapterView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        tools:context="com.viralandroid.androidimageslidertutorial.AndroidImageSlider"
+        tools:context="com.supcom.gr39.kool.HomeActivity.AndroidImageSlider"
         android:layout_above="@+id/sign_in_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
