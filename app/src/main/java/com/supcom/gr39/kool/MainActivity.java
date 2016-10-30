@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity
             new DownloadImageTask(icon).execute(user.getPhotoUrl().toString());
 
         else
-            icon.setImageResource(R.mipmap.ic_launcher);
+            icon.setImageResource(R.drawable.logo);
 
     }
 

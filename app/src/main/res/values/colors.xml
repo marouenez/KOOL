@@ -2,10 +2,10 @@
 <resources>
 
   <color name="red">#e50000</color>
-
-  <color name="primary_darker">#512DA8</color>
-  <color name="primary">#673AB7</color>
-  <color name="primary_dark">#512da8</color>
+  #512da8
+  <color name="primary_darker">#0d5e4e</color>
+  <color name="primary">#12836d</color>
+  <color name="primary_dark">#0d5e4e</color>
   <color name="primary_light">#D1C4E9</color>
   <color name="accent">#E040FB</color>
   <color name="primary_text">#212121</color>
