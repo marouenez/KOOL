@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-
         username.setText(user.getDisplayName());
 
         if (user.getPhotoUrl()!=null)
