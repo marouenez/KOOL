@@ -3,12 +3,14 @@ package com.supcom.gr39.kool;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +57,41 @@ public class HomeActivity extends AppCompatActivity implements
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        ViewPager mViewPager = (ViewPager) findViewById(R.id.viewPageAndroid);
+        AndroidImageAdapter adapterView = new AndroidImageAdapter(this);
+        mViewPager.setAdapter(adapterView);
+        //ViewPagerAdapder adapder = new ViewPagerAdapder(getSupportFragmentManager(), listData);
+       // paper = (ViewPager) findViewById(R.id.viewpager);
+
+        final RadioGroup radioGroup = (RadioGroup)findViewById(R.id.radiogroup);
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        radioGroup.check(R.id.radioButton);
+                        break;
+                    case 1:
+                        radioGroup.check(R.id.radioButton2);
+                        break;
+                    case 2:
+                        radioGroup.check(R.id.radioButton3);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("990362491160-ei6b5spcjkglee0ujr3je88pbhq63070.apps.googleusercontent.com")
                 .requestEmail()
@@ -164,5 +201,6 @@ public class HomeActivity extends AppCompatActivity implements
     public void onBackPressed() {
             moveTaskToBack(true);
     }
+
 
 }

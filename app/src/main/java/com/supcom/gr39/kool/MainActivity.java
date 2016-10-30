@@ -1,6 +1,7 @@
 package com.supcom.gr39.kool;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,17 +23,25 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+
+import static android.R.attr.data;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,7 +53,9 @@ public class MainActivity extends AppCompatActivity
     ImageView icon;
     ArrayList<String> infos ;
     ProgressDialog pd;
+    private Button scan_button;
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -52,6 +63,22 @@ public class MainActivity extends AppCompatActivity
         //ActionBar bar = getActionBar();
         //bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#673AB7")));
         pd = new ProgressDialog(this);
+
+        scan_button = (Button) findViewById(R.id.scan_button);
+        final Activity activity = this;
+        scan_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentIntegrator integrator = new IntentIntegrator(activity);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+                integrator.setPrompt("Scan");
+                integrator.setCameraId(0);
+                integrator.setBeepEnabled(false);
+                integrator.setBarcodeImageEnabled(false);
+                integrator.initiateScan();
+
+            }
+        });
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -99,6 +126,22 @@ public class MainActivity extends AppCompatActivity
         else
             icon.setImageResource(R.drawable.logo);
 
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(result != null){
+            if(result.getContents()==null){
+                Toast.makeText(this, "You cancelled the scanning", Toast.LENGTH_LONG).show();
+            }
+            else {
+                Toast.makeText(this, result.getContents(),Toast.LENGTH_LONG).show();
+            }
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override
@@ -116,6 +159,7 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+
     }
 
     @Override
@@ -241,5 +285,7 @@ public class MainActivity extends AppCompatActivity
             bmImage.setImageBitmap(result);
         }
     }
+
+
 }
 
