@@ -11,35 +11,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.supcom.gr39.kool.HomeActivity">
 
-    <Button
-        android:text="@string/signInButto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:onClick="loginClick"
-        android:layout_above="@+id/createText"
-        android:layout_centerHorizontal="true"
-        android:theme="@style/AppTheme"/>
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        android:layout_gravity="center"
-        android:text="Connect With Google"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true">
-
-
-    </com.google.android.gms.common.SignInButton>
-
     <ImageView
         app:srcCompat="@drawable/logo"
         android:id="@+id/imageView3"
         android:layout_centerHorizontal="true"
-        android:layout_width="120dp"
-        android:layout_height="120dp" />
+        android:layout_height="120dp"
+        android:layout_width="170dp" />
 
     <RelativeLayout
         android:id="@+id/id_adapterView"
@@ -94,11 +71,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/homeText"
-        android:layout_marginRight="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_below="@+id/button"
-        android:layout_alignRight="@+id/radiogroup"
-        android:layout_alignEnd="@+id/radiogroup" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3" />
 
     <TextView
         android:text="Create one"
@@ -110,12 +85,35 @@
         android:textColor="@color/primary"
         android:onClick="signupClick"
 
-        android:layout_marginBottom="13dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/radiogroup"
-        android:layout_alignStart="@+id/radiogroup"
-        android:layout_marginLeft="76dp"
-        android:layout_marginStart="76dp" />
+        android:layout_toRightOf="@+id/homeText"
+        android:layout_toEndOf="@+id/homeText" />
+
+    <Button
+        android:text="@string/signInButto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:onClick="loginClick"
+        android:theme="@style/AppTheme"
+        android:layout_above="@+id/homeText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="11dp" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_gravity="center"
+        android:text="Connect With Google"
+        android:layout_above="@+id/button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+    </com.google.android.gms.common.SignInButton>
 
 
 </RelativeLayout>
