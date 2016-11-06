@@ -118,7 +118,7 @@ public class HomeActivity extends AppCompatActivity implements
             }
         });
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("990362491160-ei6b5spcjkglee0ujr3je88pbhq63070.apps.googleusercontent.com")
+                .requestIdToken("271140146392-eg1akahbdlmrbjq43u576benb7vj1f0l.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 

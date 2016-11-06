@@ -2,12 +2,13 @@
 <resources>
 
   <color name="red">#e50000</color>
-  #512da8
-  <color name="primary_darker">#0d5e4e</color>
-  <color name="primary">#12836d</color>
-  <color name="primary_dark">#0d5e4e</color>
+
+  <color name="primary">#E43F3F</color>
+  <color name="primary_dark">#E12929</color>
+  <color name="primary_darker">#CC1D1D</color>
+  <color name="accent">#FFFFFF</color>
   <color name="primary_light">#D1C4E9</color>
-  <color name="accent">#E040FB</color>
+
   <color name="primary_text">#212121</color>
   <color name="secondary_text">#757575</color>
   <color name="icons">#FFFFFF</color>
@@ -20,4 +21,8 @@
   <color name="base">#AAAAAA</color>
   <color name="iron">#CCCCCC</color>
   <color name="white">#ffffff</color>
+
+  <color name="colorAccent">#FF4081</color>
+  <color name="viewBg">#f1f5f8</color>
+  <color name="album_title">#4c4c4c</color>
 </resources>

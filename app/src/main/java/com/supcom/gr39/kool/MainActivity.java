@@ -136,7 +136,9 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "You cancelled the scanning", Toast.LENGTH_LONG).show();
             }
             else {
-                Toast.makeText(this, result.getContents(),Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getApplicationContext(), CategoryActivity.class);
+                i.putExtra("restoId",result.getContents());
+                startActivity(i);
             }
         }
         else {

@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "990362491160",
-    "firebase_url": "https://kool-732bf.firebaseio.com",
-    "project_id": "kool-732bf",
-    "storage_bucket": "kool-732bf.appspot.com"
+    "project_number": "271140146392",
+    "firebase_url": "https://kool-b5f03.firebaseio.com",
+    "project_id": "kool-b5f03",
+    "storage_bucket": "kool-b5f03.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:990362491160:android:4753c1c80b5853ac",
+        "mobilesdk_app_id": "1:271140146392:android:4753c1c80b5853ac",
         "android_client_info": {
           "package_name": "com.supcom.gr39.kool"
         }
       },
       "oauth_client": [
         {
-          "client_id": "990362491160-ei6b5spcjkglee0ujr3je88pbhq63070.apps.googleusercontent.com",
+          "client_id": "271140146392-0irjef8p41cdqtqin603dhgeq2ru51hi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.supcom.gr39.kool",
+            "certificate_hash": "1A80F5CCEAA7ADA9F29EA6FE2370CB1AB1088F4A"
+          }
+        },
+        {
+          "client_id": "271140146392-eg1akahbdlmrbjq43u576benb7vj1f0l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBiVw57x7-tw0x_6BzCnsGFV6cTIzY2orI"
+          "current_key": "AIzaSyA0ayQqMyf3tM4yuIEgo15u4hmP3BCIg2U"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271140146392-eg1akahbdlmrbjq43u576benb7vj1f0l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
