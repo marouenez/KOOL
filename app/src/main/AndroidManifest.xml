@@ -10,11 +10,11 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.Main"></activity>
+            android:theme="@style/AppTheme.Main" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.Dark"
-            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".SignupActivity"
             android:theme="@style/AppTheme.Dark"
@@ -31,8 +31,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CategoryActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".CategoryActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DishActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ItemActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BasketActivty"
+            android:theme="@style/AppTheme.NoActionBar" >
 
         </activity>
     </application>

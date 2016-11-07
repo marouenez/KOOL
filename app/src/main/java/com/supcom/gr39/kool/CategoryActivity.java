@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -37,7 +38,7 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
     private List<Category> categoryList;
     private ImageView image;
     private String categ;
-    private String restoId;
+    public static String restoId;
     DatabaseReference mRoot = FirebaseDatabase.getInstance().getReference();
     DatabaseReference resto;
     @Override
@@ -61,6 +62,9 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
         recyclerView.setAdapter(adapter);
         restoId = getIntent().getStringExtra("restoId");
 
+        Intent i = new Intent(getApplicationContext(),DishActivity.class);
+        i.putExtra("restoId", restoId);
+
         resto = mRoot.child(restoId);
 
         prepareCategories();
@@ -82,7 +86,12 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
         });
 
 
-        CardView cardView = (CardView) findViewById(R.id.card_view);
+        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),BasketActivty.class));
+            }
+        });
 
 
     }
@@ -200,7 +209,7 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
                 .MyClickListener() {
             @Override
             public void onItemClick(final int position, View v) {
-
+                startActivity(new Intent(getApplicationContext(),DishActivity.class));
 
             }
         });

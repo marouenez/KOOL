@@ -66,7 +66,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(mContext,Main2Activity.class);
+                Intent i = new Intent(mContext,DishActivity.class);
                 i.putExtra("categoryName",category.getName());
                 mContext.startActivity(i);
 
@@ -75,7 +75,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         holder.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(mContext,Main2Activity.class);
+                Intent i = new Intent(mContext,DishActivity.class);
                 i.putExtra("categoryName",category.getName());
                 mContext.startActivity(i);
 

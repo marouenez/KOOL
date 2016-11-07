@@ -45,7 +45,7 @@ import static android.R.attr.data;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    public static String tableId;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener ;
     TextView         emailHeader ;
@@ -137,7 +137,10 @@ public class MainActivity extends AppCompatActivity
             }
             else {
                 Intent i = new Intent(getApplicationContext(), CategoryActivity.class);
-                i.putExtra("restoId",result.getContents());
+                Intent i1 = new Intent(getApplicationContext(), ItemActivity.class);
+                String[] qr = result.getContents().split("/");
+                i.putExtra("restoId",qr[0]);
+                tableId = qr[1];
                 startActivity(i);
             }
         }

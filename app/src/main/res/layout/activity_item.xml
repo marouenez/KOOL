@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.supcom.gr39.kool.ItemActivity"
+>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:id="@+id/verticalLayout">
+    <ImageView
+        android:layout_width="250dp"
+        android:id="@+id/imageItem"
+        android:layout_gravity="center_horizontal"
+        android:elevation="12dp"
+        android:scaleType="fitXY"
+        android:cropToPadding="true"
+        android:adjustViewBounds="true"
+        android:layout_height="150dp" />
+
+    <TextView
+        android:text="Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleItem"
+        android:gravity="center_horizontal"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
+        android:textSize="30sp" />
+
+    <TextView
+        android:text="Description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/desc"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
+
+        <TextView
+            android:text="Quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/quantity"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/verticalLayout"
+        android:orientation="horizontal"
+        android:id="@+id/id_linear_layout"
+        android:layout_marginBottom="38dp"
+        android:layout_centerHorizontal="true">
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="+"
+            />
+        <TextView
+            android:id="@+id/quantity_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="-"
+            />
+    </LinearLayout>
+
+    <Button
+        android:text="ORDER NOW !"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_linear_layout"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button3"
+        android:layout_marginTop="20dp" />
+
+</RelativeLayout>

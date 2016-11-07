@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_basket"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.supcom.gr39.kool.BasketActivty">
+
+    <LinearLayout
+        android:id = "@+id/relativeLayout1"
+        android:layout_width = "fill_parent"
+        android:layout_height = "wrap_content"
+        android:background = "@color/primary" >
+
+
+        <TextView
+            android:layout_width = "0dp"
+            android:layout_height = "wrap_content"
+            android:layout_weight = "0.5"
+            android:gravity = "center"
+            android:padding = "5dp"
+            android:text = "Q"
+            android:textColor = "#ffffff"
+            android:textAppearance="@android:style/TextAppearance.Material.Title" />
+
+        <TextView
+            android:layout_width = "0dp"
+            android:layout_height = "wrap_content"
+            android:layout_weight = "3"
+            android:gravity = "center"
+            android:padding = "5dp"
+            android:text = "Product"
+            android:textColor = "#ffffff"
+            android:textAppearance="@android:style/TextAppearance.Material.Title" />
+
+        <TextView
+            android:layout_width = "0dp"
+            android:layout_height = "wrap_content"
+            android:layout_weight = "1"
+            android:gravity = "center"
+            android:padding = "5dp"
+            android:text = "Price"
+            android:textColor = "#ffffff"
+            android:textAppearance="@android:style/TextAppearance.Material.Title" />
+        <TextView
+            android:layout_width = "0dp"
+            android:layout_height = "wrap_content"
+            android:layout_weight = "0.5"
+            android:gravity = "center"
+            android:padding = "5dp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id = "@+id/listview"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:divider = "@null"
+        android:choiceMode="multipleChoice"
+        android:headerDividersEnabled="false"
+        style="@android:style/Widget.Material.ListView"
+        android:layout_below="@+id/relativeLayout1" />
+
+</RelativeLayout>

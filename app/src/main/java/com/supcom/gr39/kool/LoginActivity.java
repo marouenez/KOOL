@@ -73,8 +73,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-
-
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
