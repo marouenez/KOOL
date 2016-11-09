@@ -1,5 +1,6 @@
 package com.supcom.gr39.kool;
 
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public static ArrayList<BasketModel> productList = new ArrayList<>();
     public static String titleDish;
     public static String priceDish;
 
+
     public int quantity = 1;
 
     public void increase(View view) {
@@ -51,6 +53,7 @@ public static ArrayList<BasketModel> productList = new ArrayList<>();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
+
 
         btn_order = (Button) findViewById(R.id.btn_order) ;
 
@@ -107,9 +110,12 @@ public static ArrayList<BasketModel> productList = new ArrayList<>();
 
                 int priceInt = Integer.parseInt(priceDish);
                 int totalPrice = quantity*priceInt;
-                BasketModel order = new BasketModel(quantity,titleDish.toString(), String.valueOf(totalPrice)+" DT");
+                BasketModel order = new BasketModel(quantity, titleDish, String.valueOf(totalPrice)+" DT");
 
                 productList.add(order);
+                MainActivity.tab.add(false);
+
+                //finish();
             }
         });
 

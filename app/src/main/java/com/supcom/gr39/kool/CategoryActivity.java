@@ -1,4 +1,5 @@
 package com.supcom.gr39.kool;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -41,13 +43,13 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
     public static String restoId;
     DatabaseReference mRoot = FirebaseDatabase.getInstance().getReference();
     DatabaseReference resto;
+    ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
-
         initCollapsingToolbar();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -75,8 +77,14 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
         resto.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                final ProgressDialog progressDialog = new ProgressDialog(CategoryActivity.this,
+                        R.style.AppTheme_Dark_Dialog);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Loading...");
+                progressDialog.show();
                 Picasso.with(getApplicationContext()).load(dataSnapshot.child("imgUrl").getValue().toString()).into(backdrop);
                 restoName.setText(dataSnapshot.child("name").getValue().toString());
+                progressDialog.dismiss();
             }
 
             @Override
@@ -135,6 +143,11 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
         resto.child("Dishes").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                final ProgressDialog progressDialog = new ProgressDialog(CategoryActivity.this,
+                        R.style.AppTheme_Dark_Dialog);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Loading...");
+                progressDialog.show();
                 for (DataSnapshot categorie : dataSnapshot.getChildren()){
                     String categoryName = categorie.getKey();
                     String categoryUrl = categorie.child("imgUrl").getValue().toString();
@@ -143,6 +156,8 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
                     categoryList.add(a);
                     adapter.notifyDataSetChanged();
                 }
+
+                progressDialog.dismiss();
             }
 
             @Override
@@ -214,4 +229,6 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
             }
         });
     }
+
+
 }

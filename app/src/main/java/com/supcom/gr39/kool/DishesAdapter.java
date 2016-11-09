@@ -33,7 +33,7 @@ public class DishesAdapter extends RecyclerView
             label = (TextView) itemView.findViewById(R.id.itemTitle);
             dateTime = (TextView) itemView.findViewById(R.id.priceItem);
             thumbnail = (ImageView)  itemView.findViewById(R.id.imageView);
-            overflow = (ImageView)  itemView.findViewById(R.id.overflow);
+            //overflow = (ImageView)  itemView.findViewById(R.id.overflow);
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
         }

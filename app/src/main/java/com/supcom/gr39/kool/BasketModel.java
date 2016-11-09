@@ -1,5 +1,7 @@
 package com.supcom.gr39.kool;
 
+import android.widget.CheckBox;
+
 /**
  * Created by marouenez on 07/11/16.
  */
@@ -10,6 +12,7 @@ public class BasketModel {
     private String product;
 
     private String price;
+
 
     public BasketModel(int quantity ,String product, String price) {
 
@@ -31,6 +34,7 @@ public class BasketModel {
     public int getQuantity() {
         return quantity;
     }
+
 
     public void setPrice(String price) {
         this.price = price;

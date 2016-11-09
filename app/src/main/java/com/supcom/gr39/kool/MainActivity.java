@@ -46,6 +46,9 @@ import static android.R.attr.data;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public static String tableId;
+    public static ArrayList<Boolean> tab;
+
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener ;
     TextView         emailHeader ;
@@ -59,10 +62,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        tab = new ArrayList<>();
         //ActionBar bar = getActionBar();
         //bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#673AB7")));
-        pd = new ProgressDialog(this);
+        //pd = new ProgressDialog(this);
 
         scan_button = (Button) findViewById(R.id.scan_button);
         final Activity activity = this;
@@ -263,12 +266,7 @@ public class MainActivity extends AppCompatActivity
             this.bmImage = bmImage;
         }
 
-        @Override
-        protected void onPreExecute() {
-            // TODO Auto-generated method stub
-            super.onPreExecute();
-            pd.show();
-        }
+
 
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
@@ -286,7 +284,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(Bitmap result) {
             super.onPostExecute(result);
-            pd.dismiss();
+            //pd.dismiss();
             bmImage.setImageBitmap(result);
         }
     }

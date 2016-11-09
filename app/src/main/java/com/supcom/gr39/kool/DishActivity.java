@@ -2,6 +2,7 @@ package com.supcom.gr39.kool;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,7 +35,7 @@ public class DishActivity extends AppCompatActivity {
     public static String categoryName;
     DatabaseReference mRoot = FirebaseDatabase.getInstance().getReference();
 
-    public void popupmenu (View view){
+    /*public void popupmenu (View view){
 
 
         PopupMenu popup = new PopupMenu(DishActivity.this, view);
@@ -55,7 +56,7 @@ public class DishActivity extends AppCompatActivity {
         });
 
         popup.show();
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class DishActivity extends AppCompatActivity {
 
         final ImageView backdrop2 = (ImageView) findViewById(R.id.backdrop2);
         final TextView restoName = (TextView) findViewById(R.id.love_music2) ;
-        DatabaseReference resto1 = mRoot.child(CategoryActivity.restoId).child("Dishes").child(categoryName);
+        DatabaseReference resto1 = mRoot.child(CategoryActivity.restoId).child("Dishes").child(DishActivity.categoryName);
         resto1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -86,6 +87,13 @@ public class DishActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+
+        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),BasketActivty.class));
             }
         });
 
