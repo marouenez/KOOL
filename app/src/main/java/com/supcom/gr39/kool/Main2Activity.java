@@ -22,11 +22,7 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_main2);
-        final ProgressDialog progressDialog = new ProgressDialog(Main2Activity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -68,6 +64,11 @@ public class Main2Activity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+        final ProgressDialog progressDialog = new ProgressDialog(Main2Activity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
     }
 
     @Override

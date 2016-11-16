@@ -20,6 +20,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.LoginFilter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +35,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -57,6 +63,10 @@ public class MainActivity extends AppCompatActivity
     ArrayList<String> infos ;
     ProgressDialog pd;
     private Button scan_button;
+
+    DatabaseReference resto = FirebaseDatabase.getInstance().getReference();
+
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,17 +144,37 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null){
-            if(result.getContents()==null){
+        if(result != null) {
+            if (result.getContents() == null) {
                 Toast.makeText(this, "You cancelled the scanning", Toast.LENGTH_LONG).show();
-            }
-            else {
-                Intent i = new Intent(getApplicationContext(), CategoryActivity.class);
-                Intent i1 = new Intent(getApplicationContext(), ItemActivity.class);
-                String[] qr = result.getContents().split("/");
-                i.putExtra("restoId",qr[0]);
-                tableId = qr[1];
-                startActivity(i);
+            } else {
+                if (result.getContents().contains("/")) {
+                    final String[] qr = result.getContents().split("/");
+                    resto.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.child("Rests").child(qr[0]).getValue() != null) {
+                                Intent i = new Intent(getApplicationContext(), CategoryActivity.class);
+                                Intent i1 = new Intent(getApplicationContext(), ItemActivity.class);
+
+                                i.putExtra("restoId", qr[0]);
+                                tableId = qr[1];
+                                startActivity(i);
+                            }
+                            else
+                                Toast.makeText(MainActivity.this, "Invalid QR Code, Try again ...", Toast.LENGTH_LONG).show();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+                else {
+                    Toast.makeText(this, "Invalid QR Code, Try again ...", Toast.LENGTH_LONG).show();
+                }
             }
         }
         else {

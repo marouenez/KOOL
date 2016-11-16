@@ -67,7 +67,7 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
         Intent i = new Intent(getApplicationContext(),DishActivity.class);
         i.putExtra("restoId", restoId);
 
-        resto = mRoot.child(restoId);
+        resto = mRoot.child("Rests").child(restoId);
 
         prepareCategories();
         final ImageView backdrop = (ImageView) findViewById(R.id.backdrop);
@@ -77,14 +77,8 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
         resto.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final ProgressDialog progressDialog = new ProgressDialog(CategoryActivity.this,
-                        R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
-                progressDialog.setMessage("Loading...");
-                progressDialog.show();
                 Picasso.with(getApplicationContext()).load(dataSnapshot.child("imgUrl").getValue().toString()).into(backdrop);
                 restoName.setText(dataSnapshot.child("name").getValue().toString());
-                progressDialog.dismiss();
             }
 
             @Override

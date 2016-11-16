@@ -85,8 +85,8 @@ public static ArrayList<BasketModel> productList = new ArrayList<>();
             }
         });
         DatabaseReference mRoot = FirebaseDatabase.getInstance().getReference();
-        final DatabaseReference itemRef = mRoot.child(CategoryActivity.restoId).child("Dishes").child(DishActivity.categoryName).child(item);
-        final DatabaseReference orderRef = mRoot.child(CategoryActivity.restoId).child("Orders");
+        final DatabaseReference itemRef = mRoot.child("Rests").child(CategoryActivity.restoId).child("Dishes").child(DishActivity.categoryName).child(item);
+        final DatabaseReference orderRef = mRoot.child("Rests").child(CategoryActivity.restoId).child("Orders");
         itemRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

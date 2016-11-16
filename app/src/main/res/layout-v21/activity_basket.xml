@@ -38,6 +38,7 @@
             android:gravity = "center"
             android:padding = "5dp"
             android:text = "Q"
+
             android:textColor = "#ffffff"
             android:textAppearance="@android:style/TextAppearance.Material.Title" />
 

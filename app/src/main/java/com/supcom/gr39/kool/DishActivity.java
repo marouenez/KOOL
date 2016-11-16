@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +25,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Locale;
-
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class DishActivity extends AppCompatActivity {
 
@@ -73,10 +75,17 @@ public class DishActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
 
+        /*MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);*/
+
+
+
 
         final ImageView backdrop2 = (ImageView) findViewById(R.id.backdrop2);
         final TextView restoName = (TextView) findViewById(R.id.love_music2) ;
-        DatabaseReference resto1 = mRoot.child(CategoryActivity.restoId).child("Dishes").child(DishActivity.categoryName);
+        DatabaseReference resto1 = mRoot.child("Rests").child(CategoryActivity.restoId).child("Dishes").child(DishActivity.categoryName);
         resto1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -155,7 +164,7 @@ public class DishActivity extends AppCompatActivity {
 
     private ArrayList<Dish> getDataSet() {
         final ArrayList results = new ArrayList<Dish>();
-        DatabaseReference resto = mRoot.child(CategoryActivity.restoId).child("Dishes").child(categoryName);
+        DatabaseReference resto = mRoot.child("Rests").child(CategoryActivity.restoId).child("Dishes").child(categoryName);
         resto.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
