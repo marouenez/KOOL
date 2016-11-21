@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
-public class Main2Activity extends AppCompatActivity {
+public class    Main2Activity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;

@@ -1,4 +1,5 @@
 package com.supcom.gr39.kool;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -44,6 +45,10 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
     DatabaseReference mRoot = FirebaseDatabase.getInstance().getReference();
     DatabaseReference resto;
     ProgressDialog dialog;
+    public static Activity activityA;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,8 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
         initCollapsingToolbar();
+        activityA = this;
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -165,7 +172,10 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        startActivity(new Intent(CategoryActivity.this,Main2Activity.class));
+        //startActivity(new Intent(CategoryActivity.this,Main2Activity.class));
+        //TODO : why ?
+
+
     }
 
     /**
@@ -222,7 +232,18 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
 
             }
         });
+
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        ItemActivity.productList.clear();
+    }
 }

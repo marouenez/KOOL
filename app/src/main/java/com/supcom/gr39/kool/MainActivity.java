@@ -61,18 +61,21 @@ public class MainActivity extends AppCompatActivity
     TextView username ;
     ImageView icon;
     ArrayList<String> infos ;
-    ProgressDialog pd;
     private Button scan_button;
 
     DatabaseReference resto = FirebaseDatabase.getInstance().getReference();
 
-
+    ProgressDialog progressDialog ;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tab = new ArrayList<>();
+        progressDialog = new ProgressDialog(MainActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+
+
         //ActionBar bar = getActionBar();
         //bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#673AB7")));
         //pd = new ProgressDialog(this);
@@ -143,6 +146,13 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if (result.getContents() == null) {
@@ -160,11 +170,13 @@ public class MainActivity extends AppCompatActivity
                                 i.putExtra("restoId", qr[0]);
                                 tableId = qr[1];
                                 startActivity(i);
-                            }
-                            else
-                                Toast.makeText(MainActivity.this, "Invalid QR Code, Try again ...", Toast.LENGTH_LONG).show();
-                        }
+                            } else {
 
+                                Toast.makeText(MainActivity.this, "Invalid QR Code, Try again ...", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+
+                            }
+                        }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
@@ -174,12 +186,14 @@ public class MainActivity extends AppCompatActivity
                 }
                 else {
                     Toast.makeText(this, "Invalid QR Code, Try again ...", Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
                 }
             }
         }
         else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+
     }
 
     @Override
@@ -319,6 +333,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        progressDialog.dismiss();
+    }
 }
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,8 @@ public static ArrayList<BasketModel> productList = new ArrayList<>();
     private Button  btn_order ;
     public static String titleDish;
     public static String priceDish;
+    String noteDish;
+    EditText input ;
 
 
     public int quantity = 1;
@@ -57,15 +60,15 @@ public static ArrayList<BasketModel> productList = new ArrayList<>();
 
         btn_order = (Button) findViewById(R.id.btn_order) ;
 
-        String item = getIntent().getStringExtra("item");
-        int it = new Integer(item)+1;
-        item = String.valueOf(it);
+        String item = getIntent().getStringExtra("itemName");
+
 
         Log.i("table",MainActivity.tableId);
 
         final TextView titleItem = (TextView) findViewById(R.id.titleItem);
         final TextView descItem = (TextView) findViewById(R.id.desc);
         final ImageView imageItem = (ImageView)  findViewById(R.id.imageItem);
+
 
 
         Button plus = (Button) findViewById(R.id.plus);
@@ -90,11 +93,11 @@ public static ArrayList<BasketModel> productList = new ArrayList<>();
         itemRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                titleItem.setText(dataSnapshot.child("name").getValue().toString());
+                titleItem.setText(dataSnapshot.getKey());
                 descItem.setText(dataSnapshot.child("description").getValue().toString());
                 priceDish = dataSnapshot.child("cost").getValue().toString();
                 Picasso.with(getApplicationContext()).load(dataSnapshot.child("imgUrl").getValue().toString()).into(imageItem);
-                titleDish = dataSnapshot.child("name").getValue().toString();
+                titleDish = dataSnapshot.getKey();
             }
 
             @Override
@@ -110,12 +113,15 @@ public static ArrayList<BasketModel> productList = new ArrayList<>();
 
                 int priceInt = Integer.parseInt(priceDish);
                 int totalPrice = quantity*priceInt;
-                BasketModel order = new BasketModel(quantity, titleDish, String.valueOf(totalPrice)+" DT");
+                input = (EditText)  findViewById(R.id.note);
+                if (input !=null)
+                    noteDish = input.getText().toString();
+                BasketModel order = new BasketModel(quantity, titleDish, noteDish,String.valueOf(totalPrice)+" DT");
 
                 productList.add(order);
                 MainActivity.tab.add(false);
 
-                //finish();
+                finish();
             }
         });
 

@@ -25,6 +25,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Objects;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -128,7 +130,6 @@ public class DishActivity extends AppCompatActivity {
                 Log.i(LOG_TAG, " Clicked on Item " + position);
 
                 Intent i = new Intent(getApplicationContext(),ItemActivity.class);
-                i.putExtra("item",String.valueOf(position));
                 startActivity(i);
 
             }
@@ -171,12 +172,15 @@ public class DishActivity extends AppCompatActivity {
                 for (DataSnapshot mekla : dataSnapshot.getChildren()){
                     String s = mekla.getKey();
 
-                    if (s.charAt(0)<'9' && s.charAt(0)> '0'){
-                        String meklaName = mekla.child("name").getValue().toString();
-                        String meklaUrl = mekla.child("imgUrl").getValue().toString();
-                        String meklaCost = mekla.child("cost").getValue().toString();
-                        Dish a = new Dish(meklaName, meklaCost, meklaUrl);
-                        results.add(a);
+                    if (!s.equals("imgUrl") && !s.equals("number")){
+                        Log.i("ùmekla", s);
+
+                            String meklaName = mekla.getKey();
+                            String meklaUrl = mekla.child("imgUrl").getValue().toString();
+                            String meklaCost = mekla.child("cost").getValue().toString();
+                            Dish a = new Dish(meklaName, meklaCost, meklaUrl);
+                            results.add(a);
+
                     }
                 }
             }

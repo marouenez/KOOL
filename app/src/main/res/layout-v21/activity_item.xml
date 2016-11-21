@@ -4,100 +4,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main3"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
 
     tools:context="com.supcom.gr39.kool.ItemActivity"
 >
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:id="@+id/verticalLayout">
-    <ImageView
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:id="@+id/imageItem"
-        android:layout_gravity="center_horizontal"
-        android:elevation="12dp"
-        android:scaleType="fitXY"
-        android:cropToPadding="true"
-        android:adjustViewBounds="true" />
+        android:id="@+id/scrollView"
+        android:layout_above="@+id/btnr">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:id="@+id/verticalLayout">
+                <ImageView
+                    android:id="@+id/imageItem"
+                    android:layout_gravity="center_horizontal"
+                    android:elevation="12dp"
+                    android:scaleType="fitXY"
+                    android:cropToPadding="true"
+                    android:adjustViewBounds="true"
+                    android:layout_width="250dp"
+                    android:layout_height="200dp" />
 
-    <TextView
-        android:text="Title"
+                <TextView
+                    android:text="Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/titleItem"
+                    android:textAppearance="@android:style/TextAppearance.Material.Title"
+                    android:textSize="30sp"
+                    android:gravity="center_horizontal" />
+
+                <!--<RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ratingBar"
+                    android:numStars="5"
+                    android:rating="0"
+                    android:stepSize="0.5"
+                    android:isIndicator="true"
+                    android:layout_gravity="center_horizontal" />-->
+
+                <TextView
+                    android:text="Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/desc"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp" />
+
+                <TextView
+                    android:text="Quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/quantity"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:layout_marginTop="20dp" />
+
+
+             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/verticalLayout"
+                android:orientation="horizontal"
+                android:id="@+id/id_linear_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal">
+                <Button
+                    android:id="@+id/plus"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:text="+"
+                    android:theme="@style/AppTheme.Dark"
+                    />
+                <TextView
+                    android:id="@+id/quantity_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:textSize="24sp" />
+                <Button
+                    android:id="@+id/minus"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:text="-"
+                    android:theme="@style/AppTheme.Dark" />
+            </LinearLayout>
+            <TextView
+                android:text="Note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:id="@+id/noteView"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:layout_marginTop="20dp"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="Make a note (with/without sugar, with/without salt ...)"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/titleItem"
-        android:gravity="center_horizontal"
-        android:textAppearance="@android:style/TextAppearance.Material.Title"
-        android:textSize="30sp" />
-
-    <TextView
-        android:text="Description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/desc"
-        android:gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
-
-        <TextView
-            android:text="Quantity"
+        android:id="@+id/btnr"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentStart="false">
+        <android.support.v7.widget.AppCompatButton
+            android:text="Add to basket !"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/quantity"
-            android:gravity="center_horizontal"
-            android:textStyle="bold"
-            android:textSize="30sp"
-            android:layout_marginTop="20dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/verticalLayout"
-        android:orientation="horizontal"
-        android:id="@+id/id_linear_layout"
-        android:layout_marginBottom="38dp"
-        android:layout_centerHorizontal="true">
-        <Button
-            android:id="@+id/plus"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:text="+"
+            android:id="@+id/btn_order"
             android:theme="@style/AppTheme.Dark"
-            />
-        <TextView
-            android:id="@+id/quantity_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            />
-        <Button
-            android:id="@+id/minus"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:text="-"
-            android:theme="@style/AppTheme.Dark"
-            />
-    </LinearLayout>
-    <android.support.v7.widget.AppCompatButton
-        android:text="Add to basket !"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/id_linear_layout"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/btn_order"
-        android:layout_marginTop="20dp"
-        android:theme="@style/AppTheme.Dark"
-        android:textSize="24sp" />
-
+            android:textSize="24sp" />
+    </RelativeLayout>
 </RelativeLayout>

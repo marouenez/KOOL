@@ -39,6 +39,11 @@ public class BasketActivty extends AppCompatActivity {
     DatabaseReference mRoot = FirebaseDatabase.getInstance().getReference();
     DatabaseReference orderRef;
     NotificationManager mNotificationManager;
+    FloatingActionButton myFab;
+    ArrayList<Boolean> tab = MainActivity.tab;
+    String tableId = MainActivity.tableId;
+    String restoId = CategoryActivity.restoId;
+    final String[] name = new String[1];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +60,9 @@ public class BasketActivty extends AppCompatActivity {
         productL = ItemActivity.productList;
 
         adapter.notifyDataSetChanged();
-        final String[] name = new String[1];
-        orderRef = mRoot.child("Rests").child(CategoryActivity.restoId).child("Orders");
-        mRoot.child("Rests").child(CategoryActivity.restoId).addValueEventListener(new ValueEventListener() {
+
+        orderRef = mRoot.child("Rests").child(restoId).child("Orders");
+        mRoot.child("Rests").child(restoId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 name[0] = dataSnapshot.child("name").getValue().toString();
@@ -68,7 +73,23 @@ public class BasketActivty extends AppCompatActivity {
 
             }
         });
-        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.floatingActionButton2);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        for (int i = 0;i< MainActivity.tab.size();i++){
+            MainActivity.tab.set(i,false);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        myFab= (FloatingActionButton) findViewById(R.id.floatingActionButton2);
         if (productL.size() > 0) {
 
 
@@ -77,6 +98,7 @@ public class BasketActivty extends AppCompatActivity {
 
 
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(BasketActivty.this);
+
                     builder1.setTitle("Order");
                     builder1.setMessage("Would you like to send the order ?");
                     builder1.setCancelable(true);
@@ -85,29 +107,34 @@ public class BasketActivty extends AppCompatActivity {
                             "Yes",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    for (int i = 0; i < MainActivity.tab.size(); i++) {
-                                        if (MainActivity.tab.get(i)) {
-                                            orderRef.child(MainActivity.tableId).push().setValue(productL.get(i));
+
+                                    for (int i = 0; i < tab.size(); i++) {
+                                        if (tab.get(i)) {
+                                            orderRef.child(tableId).push().setValue(productL.get(i));
                                         }
                                     }
-                                    for (int i = 0; i < MainActivity.tab.size(); i++) {
-                                        MainActivity.tab.set(i, false);
+
+                                    for (int i = 0; i < tab.size(); i++) {
+                                        tab.set(i, false);
                                     }
                                     ItemActivity.productList.clear();
-                                    final Intent resultIntent = new Intent(BasketActivty.this, Main2Activity.class);
+
+                                    final Intent resultIntent = new Intent(BasketActivty.this, RatingActivity.class);
                                     final Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             // Creating a artifical activity stack for the notification activity
                                             TaskStackBuilder stackBuilder = TaskStackBuilder.create(BasketActivty.this);
-                                            stackBuilder.addParentStack(MainActivity.class);
+                                            stackBuilder.addParentStack(DishActivity.class);
                                             stackBuilder.addNextIntent(resultIntent);
 
                                             // Pending intent to the notification manager
                                             PendingIntent resultPending = stackBuilder
                                                     .getPendingIntent(0, PendingIntent.FLAG_CANCEL_CURRENT);
                                             Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+
                                             // Building the notification
                                             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(BasketActivty.this)
                                                     .setSmallIcon(R.drawable.logo) // notification icon
@@ -147,16 +174,15 @@ public class BasketActivty extends AppCompatActivity {
             });
         }
         else {
+
             myFab.setVisibility(View.INVISIBLE);
         }
 
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        for (int i = 0;i< MainActivity.tab.size();i++){
-            MainActivity.tab.set(i,false);
-        }
+    protected void onPause() {
+        super.onPause();
+
     }
 }

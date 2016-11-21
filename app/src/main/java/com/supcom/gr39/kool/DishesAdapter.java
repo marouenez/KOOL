@@ -1,6 +1,8 @@
 package com.supcom.gr39.kool;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static android.R.attr.category;
 
 public class DishesAdapter extends RecyclerView
         .Adapter<DishesAdapter
@@ -26,6 +30,7 @@ public class DishesAdapter extends RecyclerView
             .OnClickListener {
         TextView label;
         TextView dateTime;
+        CardView cardView;
         public ImageView thumbnail , overflow;
 
         public DishHolder(View itemView) {
@@ -33,6 +38,7 @@ public class DishesAdapter extends RecyclerView
             label = (TextView) itemView.findViewById(R.id.itemTitle);
             dateTime = (TextView) itemView.findViewById(R.id.priceItem);
             thumbnail = (ImageView)  itemView.findViewById(R.id.imageView);
+            cardView = (CardView)  itemView.findViewById(R.id.card_view1) ;
             //overflow = (ImageView)  itemView.findViewById(R.id.overflow);
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
@@ -49,8 +55,8 @@ public class DishesAdapter extends RecyclerView
     }
 
     public DishesAdapter(Context context,ArrayList<Dish> myDataset) {
-        mDataset = myDataset;
-        mContext = context;
+        this.mDataset = myDataset;
+        this.mContext = context;
     }
 
     @Override
@@ -65,10 +71,38 @@ public class DishesAdapter extends RecyclerView
 
     @Override
     public void onBindViewHolder(final DishHolder holder, int position) {
-        Dish dish = mDataset.get(position);
+        final Dish dish = mDataset.get(position);
         holder.label.setText(mDataset.get(position).getTitleDish());
         holder.dateTime.setText("Price = "+mDataset.get(position).getDesc() + " DT");
         Picasso.with(mContext).load(dish.getUrl()).into(holder.thumbnail);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext,ItemActivity.class);
+                i.putExtra("itemName",dish.getTitleDish());
+                Log.i("itemName", dish.getTitleDish());
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(i);
+
+            }
+        });
+
+       /* holder.dateTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext,DishActivity.class);
+                i.putExtra("categoryName",dish.getDesc());
+                mContext.startActivity(i);
+
+            }
+        });*/
+        /*holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("name", mDataset.get(position).getTitleDish()));
+            }
+        });*/
+
         /*holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +110,8 @@ public class DishesAdapter extends RecyclerView
 
             }
         });*/
+
+
 
     }
 

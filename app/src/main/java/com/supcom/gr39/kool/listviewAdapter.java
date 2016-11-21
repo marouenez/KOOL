@@ -95,7 +95,7 @@ public class listviewAdapter extends BaseAdapter {
             }
         });
         final BasketModel item = productList.get(position);
-        holder.mProduct.setText(item.getProduct().toString());
+        holder.mProduct.setText(item.getName().toString());
         holder.mPrice.setText(item.getPrice().toString());
         holder.quantity.setText(String.valueOf(item.getQuantity()));
 

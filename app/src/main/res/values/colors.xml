@@ -21,6 +21,7 @@
   <color name="base">#AAAAAA</color>
   <color name="iron">#CCCCCC</color>
   <color name="white">#ffffff</color>
+<color name="indigo">#4b0082</color>
 
   <color name="colorAccent">#FF4081</color>
   <color name="viewBg">#f1f5f8</color>
